@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.example.coininspect.domain.model.Coin" />
+        <import type="android.content.Context" />
+        <import type="androidx.core.content.ContextCompat" />
+
+        <import type="com.example.coininspect.R" />
+
+        <import type="com.example.coininspect.presentation.adapter.CoinListAdapter" />
+        <variable
+            name="adapter"
+            type="com.example.coininspect.presentation.adapter.CoinListAdapter" />
+        <variable
+            name="coin"
+            type="Coin" />
+        <variable
+            name="context"
+            type="Context" />
+        <variable
+            name="order"
+            type="Integer" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:onClick="@{() -> adapter.toDetailActivity(coin.id)}"
+        android:background="@color/grey"
+        android:padding="18dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txtCoinName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{order+`. `+coin.name +` (`+ coin.symbol+`)`}"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtCoinStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@{coin.active?`active  `:`inactive  `}"
+            android:textColor="@{coin.active?context.getColor(R.color.teal_200):context.getColor(R.color.red)}"
+            android:textSize="13sp"
+            android:textStyle="italic|bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
